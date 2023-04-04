@@ -97,7 +97,6 @@ public class CentreAere
         if (nbPlacesDisponibles > 0) {
             tauxRemplissageCentre = nbEnfants / nbPlacesDisponibles;
         }
-        // On arrondit le taux à 2 chiffres après la virgule
         tauxRemplissageCentre = Math.round(tauxRemplissageCentre * 100.0) / 100.0;
         return tauxRemplissageCentre;
     }
