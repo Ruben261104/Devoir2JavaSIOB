@@ -2,8 +2,8 @@ package Entities.Exo1;
 
 public class Cours implements ICalcul,Comparable<Cours>
 {
-    private double prixCours;
-    private int idCours;
+    protected double prixCours;
+    protected int idCours;
 
     public Cours(double prixCours, int idCours) {
         this.prixCours = prixCours;
