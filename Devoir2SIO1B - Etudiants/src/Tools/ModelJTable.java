@@ -32,8 +32,17 @@ public class ModelJTable extends AbstractTableModel
     }
 
     public void loadDatasCours(ArrayList<Cours> uneListe) {
+            colonnes = new String[]{"Description","Prix"};
+            lignes = new Object[uneListe.size()][2];
+            int i = 0;
 
-        // A compléter ici
-
+            for(Cours cours : uneListe)
+            {
+                lignes[i][0] = cours.getInfos();
+                lignes[i][1] = cours.getPrix();
+                i++;
+            }
+            fireTableChanged(null);
+        }
     }
-}
+

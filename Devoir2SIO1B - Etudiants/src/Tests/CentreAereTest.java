@@ -16,6 +16,7 @@ class CentreAereTest
     private Enfant enfant3;
     private Enfant enfant4;
     private Enfant enfant5;
+    private Enfant enfant6;
 
     private Maison maison1;
     private Maison maison2;
@@ -35,6 +36,7 @@ class CentreAereTest
         enfant3 = new Enfant("Gand","Christophe");
         enfant4 = new Enfant("Cousineau","Sébastien");
         enfant5 = new Enfant("Annonier","Eric");
+        enfant6 = new Enfant("Covier","Mickaël");
 
         // 2 maisons
         maison1 = new Maison("Maison rouge");
@@ -60,12 +62,18 @@ class CentreAereTest
     void ajouterEnfant()
     {
         // On ajoute l'enfant 1 à la maison 1,chambre 1
+        maison1.AjouterChambre(chambre1);
+        chambre1.AjouterEnfant(enfant1);
 
 
 
         // On ajoute l'enfant 2 à la maison 1,chambre 1
+        maison1.AjouterChambre(chambre1);
+        chambre1.AjouterEnfant(enfant2);
 
         // On ajoute l'enfant 3 à la maison 1,chambre 1
+        maison1.AjouterChambre(chambre1);
+        chambre1.AjouterEnfant(enfant3);
 
 
     }
@@ -74,7 +82,6 @@ class CentreAereTest
     void rechercherEnfant()
     {
         // On trouve l'enfant : on testera avec le nom de la maison
-
 
         // On ne trouve pas l'enfant : on testera avec null
 
@@ -85,16 +92,28 @@ class CentreAereTest
     void tauxRemplissageMaison()
     {
         // Cas n°1 : aucun enfant parmi toutes les chambres
+        maison1.AjouterChambre(chambre2);
 
 
         // Cas n°2 : 1 seul enfant parmi toutes les chambres
-
+        maison1.AjouterChambre(chambre1);
+        chambre1.AjouterEnfant(enfant1);
 
         // Cas n°3 : 3 enfants parmi toutes les chambres
 
+        maison1.AjouterChambre(chambre1);
+        chambre1.AjouterEnfant(enfant1);
+        chambre1.AjouterEnfant(enfant2);
+        maison1.AjouterChambre(chambre2);
+        chambre1.AjouterEnfant(enfant3);
 
         // Cas n°4 : toutes les chambres sont complètement occupées
-
+        maison1.AjouterChambre(chambre1);
+        chambre1.AjouterEnfant(enfant1);
+        chambre1.AjouterEnfant(enfant2);
+        maison1.AjouterChambre(chambre2);
+        chambre2.AjouterEnfant(enfant3);
+        chambre2.AjouterEnfant(enfant4);
 
     }
 
@@ -103,12 +122,26 @@ class CentreAereTest
     {
         // Cas n°1 : aucun enfant parmi toutes les chambres
 
+        maison1.AjouterChambre(chambre1);
+        maison2.AjouterChambre(chambre2);
 
         // Cas n°2 : 2 enfants parmi toutes les chambres
 
+        maison1.AjouterChambre(chambre1);
+        chambre1.AjouterEnfant(enfant5);
+        maison2.AjouterChambre(chambre2);
+        chambre2.AjouterEnfant(enfant3);
 
         // Cas n°3 : 4 enfants parmi toutes les chambres
 
+        maison1.AjouterChambre(chambre1);
+        chambre1.AjouterEnfant(enfant1);
+        chambre1.AjouterEnfant(enfant2);
+        maison1.AjouterChambre(chambre2);
+        chambre2.AjouterEnfant(enfant3);
+        chambre2.AjouterEnfant(enfant4);
+
+        maison1.AjouterChambre(chambre1);
 
     }
 }

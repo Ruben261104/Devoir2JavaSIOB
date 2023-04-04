@@ -23,22 +23,39 @@ public class CentreAere
     //Cette méthode permet d'ajouter un enfant, dans une maison, dans une chambre
     // Attention, l'ajout ne peut se faire que si la chambre ne possède pas déjà 2 enfants
     // Si l'ajout ne peut se faire, la méthode retourne false sinon elle retourne true.
+
     public boolean AjouterEnfant(Enfant unEnfant, Maison uneMaison, Chambre uneChambre)
     {
         // A compléter ici
-        return true;
+
+            boolean ajoutPossible = false;
+            if (uneChambre.getLesEnfants().size() < 2)
+            {
+                uneChambre.getLesEnfants().add(unEnfant);
+                ajoutPossible = true;
+            }
+
+        return ajoutPossible;
     }
 
     // Cette méthode permet de rechercher l'enfant passé en paramètre
     // L'enfant passé en paramètre peut se trouver dans n'importe quelle maison, n'importe quelle chambre du centre aéré
     // Si l'enfant est trouvé, la méthode renvoie l'objet maison dans laquelle il se trouve
     // Si l'enfant n'est pas trouvé, la méthode renvoie null;
+
     public Maison RechercherEnfant(Enfant unEnfant)
     {
         Maison maisonTrouvee = null;
-
-        // A compléter ici
-
+        for (Maison maison : lesMaisons) {
+            for (Chambre chambre : maison.getLesChambres()) {
+                for (Enfant enfant : chambre.getLesEnfants()) {
+                    if (enfant.equals(unEnfant)) {
+                        maisonTrouvee = maison;
+                        break;
+                    }
+                }
+            }
+        }
         return maisonTrouvee;
     }
 
@@ -46,12 +63,22 @@ public class CentreAere
     // Le taux se détermine en fonction du nombre d'enfants total de toutes les chambres de la maison par rapport
     // au nombre total de places disponibles (nombre de chambres de la maison * 2)
     // Pour arrondir le taux à 2 chiffres après la virgule, on utilise la méthode Math.round()
+
     public double TauxRemplissageMaison(Maison uneMaison)
     {
-        // A compléter ici
-
-        return 0;
+        double tauxRemplissageMaison = 0;
+        int nbEnfants = 0;
+        int nbPlacesDisponibles = uneMaison.getLesChambres().size() * 2;
+        for (Chambre uneChambre : uneMaison.getLesChambres()) {
+            nbEnfants = nbEnfants + uneChambre.getLesEnfants().size();
+        }
+        if (nbPlacesDisponibles > 0) {
+            tauxRemplissageMaison = nbEnfants / nbPlacesDisponibles;
+        }
+        tauxRemplissageMaison = Math.round(tauxRemplissageMaison * 100.0) / 100.0;
+        return tauxRemplissageMaison;
     }
+
 
     // Cette méthode permet de calculer le taux de remplissage du centre aéré
     // Le taux se détermine en fonction du nombre d'enfants total de toutes les chambres par rapport
@@ -59,7 +86,22 @@ public class CentreAere
     // Pour arrondir le taux à 2 chiffres après la virgule, on utilise la méthode Math.round()
     public double TauxRemplissageCentreAere()
     {
-        // A compléter ici
-        return 0;
+        double tauxRemplissageCentre = 0;
+        int nbEnfants = 0;
+        int nbPlacesDisponibles = lesMaisons.size() * 2;
+        for (Maison uneMaison : lesMaisons) {
+            for (Chambre uneChambre : uneMaison.getLesChambres()) {
+                nbEnfants = nbEnfants + uneChambre.getLesEnfants().size();
+            }
+        }
+        if (nbPlacesDisponibles > 0) {
+            tauxRemplissageCentre = nbEnfants / nbPlacesDisponibles;
+        }
+        // On arrondit le taux à 2 chiffres après la virgule
+        tauxRemplissageCentre = Math.round(tauxRemplissageCentre * 100.0) / 100.0;
+        return tauxRemplissageCentre;
     }
+
+
+
 }
